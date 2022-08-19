@@ -7,9 +7,9 @@ var router = express.Router();
 function groupTest ()  {
   const group = new CGroup("OM");
 
-  const user1 = new User(1, "Guendouzi", "Mateo");
-  const user2 = new User(2, "Da Silva", "Gerson");
-  const user3 = new User(3, "Payet", "Dimitry");
+  const user1 = new User("1", "Guendouzi", "Mateo");
+  const user2 = new User("2", "Da Silva", "Gerson");
+  const user3 = new User("3", "Payet", "Dimitry");
 
   group.add(user1);
   group.add(user2);

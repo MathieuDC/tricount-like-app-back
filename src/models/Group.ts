@@ -3,7 +3,7 @@ import { TransactionI, Transactions } from './Transaction';
 import User from './User'
 
 interface Users{
-  [index: number]: User;
+  [index: string]: User;
 }
 
 interface IDebt{
@@ -32,6 +32,7 @@ class CGroup{
   }
 
   add(user: User){
+    if(!user.id) throw Error("Invalid user id");
     this.users[user.id] = user;
   }
 
@@ -40,6 +41,7 @@ class CGroup{
    * TODO 2 : Generate real id, thus changing the type in ITransaction 
    */
   addTransaction(transaction: TransactionI){
+    if(!transaction.giver.id || !transaction.receiver.id) throw Error("")
     const id = Math.floor((1 + Math.random()) * 10000);
     transaction.id = id;
     transaction.date = new Date();

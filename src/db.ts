@@ -27,6 +27,9 @@ module.exports = {
     get: (id: string) => {
       return DB.users[id];
     },
+    getAll: () => {
+      return DB.users;
+    },
     create: (user: User) => {
       const id = uuidv4();
       user.id = id;

@@ -5,20 +5,26 @@ const controller = require('./../controllers/users')
 var router = express.Router();
 
 /* GET users listing. */
+router.get('/', function(req: Request, res: Response) { 
+  controller.getAll().then((users: any) => {
+    res.send(JSON.stringify(users));
+  })
+});
+
+/* GET specific user. */
 router.get('/:id', function(req: Request, res: Response) {
   const id = req.params.id; 
   controller.get(id).then((user: User) => {
-    res.send(JSON.stringify(user));
+    res.json(user);
   })
 });
 
 router.post('/', function(req: Request, res: Response) {
   const user = req.body;
-  console.log(user);
-  
-  
-  res.type('json');
-  res.json(user);
+  controller.post(user).then((newUser: User) => {
+    res.type('json');
+    res.json(user);
+  })
 });
 
 

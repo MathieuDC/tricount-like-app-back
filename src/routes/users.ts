@@ -19,11 +19,12 @@ router.get('/:id', function(req: Request, res: Response) {
   })
 });
 
+/* POST a new user. */
 router.post('/', function(req: Request, res: Response) {
   const user = req.body;
   controller.post(user).then((newUser: User) => {
     res.type('json');
-    res.json(user);
+    res.json(newUser);
   })
 });
 

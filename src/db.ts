@@ -36,4 +36,9 @@ module.exports = {
       DB.users[id] = user;
     }
   },
+  groups: {
+    addUser: (groupId: string, user: User) => {
+      DB.groups[groupId].add(user);
+    }
+  }
 }

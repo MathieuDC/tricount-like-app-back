@@ -9,9 +9,9 @@ var router = express.Router();
 function groupTest ()  {
   const group = new CGroup("OM");
 
-  const user1 = new User("1", "Guendouzi", "Mateo");
-  const user2 = new User("2", "Da Silva", "Gerson");
-  const user3 = new User("3", "Payet", "Dimitry");
+  const user1 = new User("Guendouzi", "Mateo", "1");
+  const user2 = new User("Da Silva", "Gerson", "2");
+  const user3 = new User("Payet", "Dimitry", "3");
 
   group.add(user1);
   group.add(user2);
@@ -32,9 +32,13 @@ function groupTest ()  {
 
 /* GET groups listing. */
 router.get('/', function(req: Request, res: Response) {
-  const group = groupTest();
-  res.type('json');
-  res.send(JSON.stringify(group));
+  try {
+    const group = groupTest();
+    res.type('json');
+    res.send(JSON.stringify(group));
+  } catch (error) {
+    console.log(error)
+  }
 });
 
 /* POST a new group. */

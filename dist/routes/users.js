@@ -19,11 +19,12 @@ router.get('/:id', function (req, res) {
         res.json(user);
     });
 });
+/* POST a new user. */
 router.post('/', function (req, res) {
     const user = req.body;
     controller.post(user).then((newUser) => {
         res.type('json');
-        res.json(user);
+        res.json(newUser);
     });
 });
 module.exports = router;

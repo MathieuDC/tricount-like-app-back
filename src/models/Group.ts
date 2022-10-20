@@ -20,6 +20,7 @@ interface IGroup{
 }
 
 class CGroup{
+  id?: string;
   users: Users;
   transactions: Transactions;
   name: String;
@@ -68,7 +69,6 @@ class CGroup{
     this.debts = [];
     //On crée une copie profonde
     const users: Users = JSON.parse(JSON.stringify(this.users));
-
     Object.keys(users).forEach(key => {
       const user: User = users[Number(key)];
       if(user.balance > 0){

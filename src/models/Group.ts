@@ -1,4 +1,4 @@
-
+const { v4: uuidv4 } = require('uuid');
 import { TransactionI, Transactions } from './Transaction';
 import User from './User'
 
@@ -13,6 +13,7 @@ interface IDebt{
 }
 
 interface IGroup{
+  id: string;
   users: Users;
   transactions: Transactions;
   name: String;
@@ -20,13 +21,14 @@ interface IGroup{
 }
 
 class CGroup{
-  id?: string;
+  id: string;
   users: Users;
   transactions: Transactions;
   name: String;
   debts: IDebt[] = [];
 
   constructor(name: String){
+    this.id = uuidv4();
     this.users = {};
     this.transactions = {};
     this.name = name;
@@ -42,7 +44,7 @@ class CGroup{
    * TODO 2 : Generate real id, thus changing the type in ITransaction 
    */
   addTransaction(transaction: TransactionI){
-    if(!transaction.giver.id || !transaction.receiver.id) throw Error("")
+    if(!transaction.giver.id || !transaction.receiver.id) throw Error("Invalid Transaction")
     const id = Math.floor((1 + Math.random()) * 10000);
     transaction.id = id;
     transaction.date = new Date();

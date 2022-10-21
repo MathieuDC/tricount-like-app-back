@@ -1,6 +1,7 @@
 import User from "./models/User";
 import Group from "./models/Group";
 import CGroup from "./models/Group";
+import { TransactionI } from "./models/Transaction";
 const { v4: uuidv4 } = require('uuid');
 
 
@@ -38,13 +39,17 @@ module.exports = {
     }
   },
   groups: {
-    create: (group: CGroup) => {
-      const id = uuidv4();
-      group.id = id
-      DB.groups[id] = group
+    save:(group: CGroup) => {
+      DB.groups[group.id] = group
       return group
     },addUser: (groupId: string, user: User) => {
-      DB.groups[groupId].add(user);
+      const group = DB.groups[groupId];
+      group.add(user);
+      return group;
+    },addTransaction: (groupId: string, transaction: TransactionI) => {
+      const group = DB.groups[groupId];
+      group.addTransaction(transaction);
+      return group;
     }
   }
 }
